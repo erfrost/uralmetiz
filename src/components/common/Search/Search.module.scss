@@ -1,0 +1,66 @@
+.upper {
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+  width: 100%;
+  margin-top: 45px;
+}
+
+.bottom {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 30px;
+}
+
+.input {
+  width: 100%;
+  & div {
+    border-radius: 10px;
+  }
+}
+
+.button {
+  background: rgba(78, 54, 226, 0.87);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 12px;
+  font-family: "VK Sans Display";
+  padding: 0 30px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  white-space: nowrap;
+  text-transform: none;
+  border-radius: 10px;
+
+  &:hover {
+    background: rgba(78, 54, 226, 0.6);
+  }
+}
+
+.link {
+  font-family: "VK Sans Display";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 12px;
+  letter-spacing: 0.5px;
+
+  color: rgba(78, 54, 226, 0.87);
+  transition: 0.2s;
+
+  &:hover {
+    color: rgba(78, 54, 226, 0.6);
+  }
+}

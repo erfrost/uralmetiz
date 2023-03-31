@@ -1,0 +1,717 @@
+.body {
+  display: flex !important;
+  letter-spacing: 0.5px !important;
+  font-family: "VK Sans Display" !important;
+}
+
+.appBar {
+  height: 70px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center;
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+  background-color: rgba(78, 54, 226, 0.87) !important;
+  box-shadow: none !important;
+}
+
+.appBarLeft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  margin-left: 35px;
+}
+
+.headerTitle {
+  font-size: 24px;
+}
+
+.appBarRight {
+  flex-grow: 0;
+  margin-right: 60px;
+  display: flex;
+  align-items: center;
+  gap: 7px !important;
+}
+
+.avatar {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.openMenu {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+.openMenu:hover {
+  color: #d9d9d9;
+}
+
+.openMenu:active {
+  cursor: pointer;
+}
+
+.menu {
+  margin-top: 45px;
+}
+.menu ul {
+  padding: 0 !important;
+  border-radius: 10px !important;
+}
+.menuItem {
+  width: 145px !important;
+  height: 50px !important;
+  transition: all 0.2s;
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+.menuItem:hover {
+  background-color: rgb(249, 249, 249) !important;
+}
+.menuItem p {
+  font-family: "VK Sans Display" !important;
+  font-size: 17px !important;
+  letter-spacing: 0.5px;
+}
+
+.clickedMenu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.arrow {
+  width: 8px;
+  height: 5px;
+  margin-top: 4px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  gap: 21px;
+}
+
+.navigationMain {
+  width: 375px;
+  height: 280px;
+  margin-top: 110px;
+  background-color: white;
+  border-radius: 15px !important;
+  display: flex !important;
+  flex-direction: column;
+}
+
+.navigationBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 21px;
+}
+
+.navigationTitle {
+  color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  text-align: left !important;
+  margin-left: 18px;
+}
+
+.buttonGroup {
+  width: 335px;
+}
+.buttonGroup button:first-child {
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+}
+.buttonGroup button:last-child {
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+
+.button {
+  height: 50px;
+  color: rgba(0, 0, 0, 0.6) !important;
+  border: 0 !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  line-height: 24px;
+  justify-content: left !important;
+  font-family: "VK Sans Display" !important;
+  transition: all 0.25s;
+}
+.button:hover {
+  background-color: rgb(249, 249, 249) !important;
+}
+
+.infoPanel {
+  width: 1390px;
+  height: 540px;
+  margin-top: 110px;
+  background-color: white;
+  border-radius: 15px !important;
+}
+
+.infoPanelTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 20px;
+  gap: 40px;
+}
+
+.title1 {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.title2 {
+  font-size: 48px;
+  width: 325px;
+  letter-spacing: 0.5px;
+  line-height: 65px;
+}
+
+.title3 {
+  font-size: 30px;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.boxes {
+  display: flex;
+  justify-content: left;
+  gap: 17px;
+  color: white;
+}
+
+.box2Main {
+  width: 650px;
+  height: 176px;
+  border-radius: 12px;
+  background: rgba(78, 54, 226, 0.6);
+}
+
+.box2Content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  margin-top: 15px;
+  margin-left: 15px;
+  gap: 15px;
+}
+
+.box2Header {
+  font-size: 16px;
+}
+
+.box2Titles {
+  display: flex;
+  justify-content: left;
+}
+
+.box2Image {
+  border-radius: 10px;
+}
+
+.box2Texts {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  gap: 5px;
+}
+
+.box2Text4 {
+  margin-top: 15px;
+}
+
+.box2Photo {
+  margin-top: -252px;
+  margin-left: 90px;
+}
+
+.photo {
+  width: 300px;
+}
+
+@media screen and (max-width: 1788px) {
+  .main {
+    justify-content: left;
+    margin-left: 21px;
+  }
+  .infoPanel {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 1684px) {
+  .main {
+    justify-content: left;
+    margin-left: 15px;
+    gap: 15px;
+  }
+  .infoPanel {
+    width: 73%;
+  }
+  .box2Photo {
+    margin-left: 50px;
+  }
+}
+@media screen and (max-width: 1510px) {
+  .infoPanel {
+    width: 71%;
+  }
+  .photo {
+    width: 250px;
+  }
+  .box2Photo {
+    position: absolute;
+    left: 1080px;
+    top: 505px;
+  }
+}
+@media screen and (max-width: 1414px) {
+  .infoPanel {
+    width: 68%;
+  }
+  .photo {
+    width: 180px;
+  }
+  .box2Photo {
+    position: absolute;
+    left: 800px;
+    top: 384px;
+  }
+  .box2Main {
+    width: 95%;
+  }
+}
+@media screen and (max-width: 1273px) {
+  .infoPanel {
+    width: 64%;
+  }
+}
+@media screen and (max-width: 1140px) {
+  .infoPanel {
+    width: 59%;
+  }
+  .box2Main {
+    width: 93%;
+  }
+  .photo {
+    width: 145px;
+  }
+  .box2Photo {
+    position: absolute;
+    top: 430px;
+    left: 71%;
+  }
+  .title2 {
+    font-size: 54px;
+    width: 400px;
+  }
+  .title3 {
+    font-size: 25px;
+  }
+}
+@media screen and (max-width: 1060px) {
+  .photo {
+    width: 145px;
+  }
+  .box2Photo {
+    position: absolute;
+    top: 430px;
+    left: 72%;
+  }
+}
+@media screen and (max-width: 1030px) {
+  .box2Photo {
+    left: 73%;
+  }
+}
+@media screen and (max-width: 1025px) {
+  .box2Photo {
+    left: 74%;
+  }
+}
+@media screen and (max-width: 1010px) {
+  .box2Photo {
+    left: 75%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .navigationMain {
+    display: none !important;
+  }
+  .headerTitle {
+    display: none !important;
+  }
+  .main {
+    justify-content: center;
+    margin-left: 0;
+    gap: 0;
+    width: 2000px;
+  }
+  .infoPanel {
+    width: 95%;
+  }
+  .box2Main {
+    width: 60%;
+  }
+  .box2Texts {
+    font-size: 14px;
+  }
+  .box2Photo {
+    display: block !important;
+    position: static;
+    opacity: 1;
+  }
+  .photo {
+    display: flex !important;
+    opacity: 1;
+    margin-top: 142px;
+    margin-left: -15px;
+    width: 200px;
+  }
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin-left: -20px;
+    cursor: pointer;
+  }
+  .line {
+    width: 28px;
+    height: 3px;
+    background-color: white;
+  }
+  .appBarLeft {
+    gap: 20px;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 9;
+  }
+  /* Выпадающее содержимое (скрыто по умолчанию) */
+  .dropdown-content {
+    display: block;
+    background-color: var(--Gradation-100);
+    width: 100px;
+    position: fixed;
+    top: -244px;
+    left: 0;
+    transition: all ease-out 0.2s;
+  }
+  .dropdown-content.show {
+    width: 300px;
+    top: 70px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
+      0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%) !important;
+  }
+  @media screen and (max-width: 450px) {
+    .dropdown-content {
+      width: 100%;
+    }
+    .dropdown-content.show {
+      width: 100%;
+      top: 50px;
+    }
+    .button {
+      justify-content: center !important;
+      font-size: 17px !important;
+    }
+  }
+
+  /* Ссылки внутри выпадающего списка */
+  .dropdown-content a {
+    border: 1px solid var(--Gradation-200);
+    color: var(--Gradation-500);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: "Inter";
+    white-space: nowrap;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    text-decoration: none;
+  }
+  .border-line {
+    border: 1px solid rgb(220, 220, 220) !important;
+  }
+  @media screen and (max-width: 830px) {
+    .logo {
+      display: none !important;
+    }
+    .avatar {
+      position: absolute !important;
+      right: 15px;
+      width: 30px !important;
+      height: 30px !important;
+    }
+    .box2Main {
+      width: 94%;
+    }
+    .box2Header {
+      font-size: 14px;
+    }
+    .box2Texts {
+      font-size: 14px;
+    }
+    .box2Photo {
+      position: absolute;
+      left: 31%;
+      top: 230px;
+    }
+    .photo {
+      width: 110px;
+    }
+    .title1 {
+      display: none !important;
+    }
+    .title3 {
+      font-size: 12px;
+    }
+  }
+  @media screen and (max-width: 660px) {
+    .box2Photo {
+      left: 37%;
+    }
+    .box2Main {
+      width: 93%;
+    }
+  }
+  @media screen and (max-width: 550px) {
+    .box2Main {
+      width: 98%;
+    }
+    .box2Titles {
+      align-items: flex-start;
+    }
+    .box2Texts {
+      gap: 15px;
+      margin-top: -5px;
+      font-size: 13px;
+    }
+    .box2Text4 {
+      margin-top: 0 !important;
+    }
+    .title3 {
+      font-size: 10px;
+    }
+    .box2Photo {
+      left: 50%;
+    }
+    .infoPanelTitle {
+      margin-left: 45px;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .body {
+      height: 100vh;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: white;
+    }
+
+    .appBar {
+      height: 50px !important;
+      position: absolute !important;
+    }
+
+    .mobileMenu {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      margin-left: -20px;
+    }
+
+    .line {
+      width: 28px;
+      height: 3px;
+      background-color: white;
+    }
+
+    .navigationItem {
+      cursor: pointer;
+      background-color: gray;
+    }
+
+    .appBarRight {
+      flex-grow: 0;
+      margin-right: 60px;
+      display: flex;
+      align-items: center;
+      gap: 7px !important;
+    }
+
+    .avatar {
+      width: 28px !important;
+      height: 28px !important;
+      position: absolute !important;
+      right: 15px;
+    }
+
+    .menu {
+      margin-top: 35px;
+      padding: 0 !important;
+      position: absolute !important;
+    }
+
+    .main {
+      background-color: white;
+      margin-left: 0 !important;
+      flex-grow: 1 !important;
+      justify-content: center;
+      gap: 21px;
+      width: auto;
+    }
+
+    .menuItem {
+      width: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .clickedMenu {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .arrow {
+      width: 8px;
+      height: 5px;
+      margin-top: 4px;
+    }
+
+    .infoPanel {
+      width: 344px;
+      height: 94vh;
+      margin-top: 50px !important;
+      margin-right: 0 !important;
+      background-color: white;
+      border-radius: 0 !important;
+      display: block;
+    }
+
+    .infoPanelTitle {
+      margin-left: 17px;
+    }
+
+    .titleBox {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .title2 {
+      font-size: 40px;
+      line-height: 50px;
+      margin-left: -15px;
+    }
+
+    .title2_1 {
+      font-size: 16px;
+      margin-left: -15px;
+    }
+
+    .title3 {
+      margin-left: -15px;
+      font-size: 10px;
+      margin-top: 15px;
+    }
+
+    .boxes {
+      display: flex;
+      flex-direction: column !important;
+      justify-content: left;
+      gap: 230px;
+      color: white;
+      margin-left: -15px;
+    }
+
+    .box2Main {
+      width: 340px;
+      height: 176px;
+      border-radius: 12px;
+      background: rgba(78, 54, 226, 0.6);
+    }
+
+    .box2Content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 15px;
+      margin-left: 15px;
+      gap: 15px;
+    }
+
+    .box2Header {
+      font-size: 13px;
+    }
+
+    .box2Titles {
+      display: flex;
+      justify-content: left;
+    }
+
+    .box2Image {
+      border-radius: 10px;
+      width: 165px;
+      height: 115px;
+    }
+
+    .box2Texts {
+      display: flex;
+      flex-direction: column;
+      margin-left: 15px;
+      margin-top: 5px;
+      gap: 13px;
+      font-size: 12px;
+    }
+
+    .box2Text4 {
+      margin-top: 30px;
+    }
+
+    .box2Photo {
+      margin-top: -627px;
+      margin-left: 170px;
+      position: static !important;
+      opacity: 1 !important;
+    }
+    .photo {
+      width: 125px;
+      opacity: 1 !important;
+      margin-top: 0 !important;
+      margin-left: 0 !important;
+    }
+  }
+}

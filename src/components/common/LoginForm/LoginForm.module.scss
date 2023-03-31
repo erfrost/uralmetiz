@@ -1,0 +1,30 @@
+.input {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.jcc .MuiTabs-scroller .MuiTabs-flexContainer {
+  justify-content: center;
+}
+
+.button {
+  background: rgba(78, 54, 226, 0.87);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 12px;
+  //   font-family: "VK Sans Display";
+  padding: 15px 30px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  white-space: nowrap;
+  text-transform: none;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 15px;
+
+  &:hover {
+    background: rgba(78, 54, 226, 0.6);
+  }
+}

@@ -1,0 +1,10 @@
+.logo {
+  color: white;
+}
+
+.header {
+  background: rgba(78, 54, 226, 0.87);
+  border-radius: 0px 0px 8px 8px;
+  padding-block: 12px;
+  padding-left: 50px;
+}
