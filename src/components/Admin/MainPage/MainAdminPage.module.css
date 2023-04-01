@@ -104,7 +104,7 @@
 }
 
 .navigationMain {
-  width: 375px;
+  width: 300px;
   height: 280px;
   margin-top: 40px;
   background-color: white;
@@ -125,11 +125,11 @@
   color: rgba(0, 0, 0, 0.6);
   width: 100%;
   text-align: left !important;
-  margin-left: 18px;
+
 }
 
 .buttonGroup {
-  width: 335px;
+  width: 275px;
 }
 .buttonGroup button:first-child {
   border-top-left-radius: 10px !important;
