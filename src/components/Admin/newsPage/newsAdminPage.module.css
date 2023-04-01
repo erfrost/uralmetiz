@@ -1,0 +1,307 @@
+
+.newsHeaderBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: -21px;
+}
+.newsHeaderBtn {
+    width: 275px;
+    height: 40px;
+    border-radius: 10px !important;
+    color: white !important;
+    font-family: 'VK Sans Display' !important;
+    letter-spacing: 0.5px !important;
+    font-size: 16px !important;
+    background-color: rgba(78, 54, 226, 0.6) !important;
+}
+.newsHeaderBtn:hover {
+    background-color: rgba(78, 54, 226, 0.87) !important;
+}
+.productsHeaderBtn {
+    width: 250px;
+    height: 56px;
+    margin-bottom: -15px !important;
+    font-size: 15px !important;
+    color: white !important;
+    background-color: rgba(78, 54, 226, 0.6) !important;
+    font-family: 'VK Sans Display' !important;
+    border-radius: 10px !important;
+    letter-spacing: 0.5px !important;
+}
+.productsHeaderBtn:hover {
+    background-color: rgba(78, 54, 226, 0.87) !important;
+}
+.textFieldBox {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.textField {
+    width: 100%;
+}
+.textField div::before {
+    border-bottom: none !important;
+}
+.textField div {
+    background-color: rgb(249, 249, 249) !important;
+    border-radius: 10px !important;
+    transition: none !important;
+}
+.textField div::after {
+    border-bottom: red !important;
+}
+.textField label {
+    font-family: 'VK Sans Display' !important;
+    cursor: text !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+}
+.textField div input {
+    border-radius: 10px !important;
+    background-color: rgb(249, 249, 249) !important;
+    font-family: 'VK Sans Display' !important;
+}
+.MuiFormLabel-root.Mui-focused {
+    color: rgba(0, 0, 0, 0.6) !important;
+    font-family: 'VK Sans Display' !important;
+}
+
+.productsBoxTable {
+    margin-top: -23px;
+}
+.table {
+    height: 420px;
+    display: flex !important;
+    flex-direction: column;
+}
+.tableRow:last-child {
+    border-bottom: none !important;
+}
+.tablePagination {
+    align-self: flex-end;
+    font-family: 'VK Sans Display' !important;
+    margin-top: 1px !important;
+    transition: all 0.25s;
+}
+.tablePagination div div button {
+    transition: all 0.25s;
+}
+.tablePagination div div button:hover {
+    background-color: rgba(78, 54, 226, 0.6) !important;
+    color: white !important;
+}
+.tablePagination div div button:active {
+    background-color: rgba(78, 54, 226, 0.87) !important;
+    color: white !important;
+    border-radius: 50% !important;
+}
+.tablePagination div p {
+    font-family: 'VK Sans Display';
+    letter-spacing: 0.5px;
+}
+.tablePagination div div button span {
+    display: none !important;
+}
+.productsPagination {
+    margin-bottom: 73px;
+}
+.tableHeader {
+    color: rgba(0, 0, 0, 0.6) !important;
+    background-color: rgb(249, 249, 249);
+    border-bottom: none !important
+}
+.tableHeader:first-child {
+    border-top-left-radius: 10px;
+}
+.tableHeader:last-child {
+    border-top-right-radius: 10px;
+}
+.tableBorder:last-child {
+    border-bottom: none !important;
+}
+.tableCell {
+height: 40px;
+color: rgba(0, 0, 0, 0.6) !important;
+}
+.tableRow {
+    transition: all 0.3s;
+    font-weight: 700;
+    transition: all 0.15s;
+}
+.tableRow:hover {
+    background-color: rgb(249, 249, 249);
+}
+.cell1 {
+width: 25px;
+margin-left: 10px;
+font-size: 16px !important;
+}
+.cell2 {
+    width: 400px;
+    font-size: 18px !important;
+}
+@media screen and (max-width:1510px) {
+    .cell2 {
+        width: 250px;
+    }
+}
+@media screen and (max-width:1273px) {
+    .cell2 {
+        width: 150px;
+    }
+}
+@media screen and (max-width:1141px) {
+    .table {
+        height: 470px;
+    }
+    .cell2 {
+        width: 120px;
+        font-size: 15px !important;
+    }
+    .tablePagination {
+        margin-bottom: 40px !important;
+    }
+
+}
+@media screen and (max-width:830px) {
+    .newsHeaderBox {
+        justify-content: end;
+    }
+    .newsHeaderBtn {
+        width: 200px !important;
+        font-size: 14px !important;
+    }
+    .productsHeaderBtn {
+        font-size: 14px !important;
+    }
+}
+@media screen and (max-width: 681px) {
+    .cell2 {
+        max-width: 10px;
+    }
+}
+@media screen and (max-width:1113px) {
+    .tableBtn {
+        width: 75px !important;
+        height: 32px !important;
+        font-size: 13px !important;
+    }
+}
+@media screen and (max-width:570px) {
+    .nameApplication {
+        max-width: 40px !important;
+        font-size: 15px !important;
+    }
+}
+@media screen and (max-width:550px) {
+    .newsHeaderBtn {
+        width: 200px !important;
+        font-size: 14px !important;
+    }
+    .productsHeaderBtn {
+        font-size: 12px !important;
+    }
+}
+@media screen and (max-width:483px) {
+    .tableBtn {
+        margin: 1px;
+    }
+}
+@media screen and (max-width:450px)  {
+    .textFieldBox {
+        width: 100%;
+        margin-left: -25px;
+    }
+    .textField {
+        min-width: 175px !important;
+    }
+    .newsHeaderBox {
+        margin-left: 23px;
+    }
+    .newsHeaderBtn {
+        width: 300px !important;
+        font-size: 16px !important;
+    }
+    .productsHeaderBtn {
+        min-width: 165px !important;
+    }
+    .boxTable {
+        width: 100%;
+    }
+    .table {
+        width: 96% !important;
+        height: 510px;
+        gap: 40px;
+        position: absolute;
+        left: 9px;
+    }
+    .tablePagination {
+        position: absolute;
+        top: 375px;
+    }
+}
+.cell3 {
+   width: 135px;
+}
+.nameApplication {
+    font-size: 17px;
+}
+.tableBtn {
+    width: 110px;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.6) !important;
+    text-transform: none !important;
+    height: 37px;
+
+    border-radius: 10px !important;
+    transition: all 0.25s !important;
+}
+.tableBtn:hover {
+    background-color: rgba(78, 54, 226, 0.6) !important;
+    color: white !important;
+}
+.tableBtn:active {
+    background-color: rgba(78, 54, 226, 0.87) !important;
+    color: white !important;
+}
+.tableBtn span {
+    display: none !important;
+}
+
+.modalTitle {
+   color: rgba(0, 0, 0, 0.6)
+}
+.fontWeight {
+    font-weight: 700 !important;
+}
+.fontMain {
+    font-family: 'VK Sans Display' !important;
+    letter-spacing: 0.5px !important;
+}
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.DialogContentText {
+    color:rgba(0, 0, 0, 0.6) !important;
+    font-family: 'VK Sans Display' !important;
+    letter-spacing: 0.5px !important;
+}
+.modalBtn {
+    color:black;
+    font-size: 14px !important;
+    border-radius: 10px !important;
+}
+.btnCancel {
+    color: rgba(0, 0, 0, 0.6) !important;
+}
+.btnCancel:hover {
+    background-color: rgb(249, 249, 249) !important
+}
+.btnDelete {
+    color: red !important;
+}
+.btnDelete:hover {
+    background-color: rgb(249, 249, 249) !important;
+}

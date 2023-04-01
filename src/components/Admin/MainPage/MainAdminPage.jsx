@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Avatar,
@@ -13,10 +13,12 @@ import {
   Paper,
   Tooltip,
   Typography,
-  useScrollTrigger,
 } from "@mui/material";
 import { useMediaQuery } from "react-responsive";
 import styles from "./MainAdminPage.module.css";
+import NewsAdminPage from "../newsPage/newsAdminPage";
+import ProductsAdminPage from "../productsPage/productsAdminPage";
+import ApplicationsAdminPage from "../applicationsPage/ApplicationsAdminPage";
 
 const settings = ["Профиль", "Выход"];
 const navigation = ["Главная", "Новости", "Товары", "Заявки"];
@@ -82,7 +84,6 @@ const MainAdminPage = () => {
     setAnchorElUser(null);
   };
 
-  useEffect(() => {}, [page]);
   return (
     <Box className={styles.body}>
       <Box className={styles.main}>
@@ -116,7 +117,15 @@ const MainAdminPage = () => {
 
         <Paper elevation={0} className={styles.infoPanel}>
           <Box className={styles.infoPanelTitle}>
-            {page === "Главная" ? renderBox2 : undefined}
+            {page === "Главная" ? (
+              renderBox2
+            ) : page === "Новости" ? (
+              <NewsAdminPage />
+            ) : page === "Товары" ? (
+              <ProductsAdminPage />
+            ) : page === "Заявки" ? (
+              <ApplicationsAdminPage />
+            ) : null}
           </Box>
         </Paper>
       </Box>
