@@ -1,0 +1,28 @@
+.more_btn {
+  transition: all 0.5s ease-in-out;
+  font-family: "VK Sans Display";
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  margin-left: -45%;
+  width: 90%;
+  border-radius: 10px;
+  background: rgba(78, 54, 226, 0.87);
+  color: #fff;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  opacity: 0.25;
+  transition: opacity 0.35s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+.custom_carousel {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}

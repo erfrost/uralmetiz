@@ -20,6 +20,7 @@
   align-items: center;
   width: 100%;
   gap: 30px;
+  position: relative;
 }
 
 .input {
@@ -63,4 +64,20 @@
   &:hover {
     color: rgba(78, 54, 226, 0.6);
   }
+}
+
+.result_block {
+  position: fixed;
+  z-index: 5000;
+  height: calc(100vh);
+  background-color: rgba($color: black, $alpha: 0.4);
+  width: 100vw;
+  bottom: 0px;
+}
+
+.modal_container {
+  padding-inline: 10%;
+  margin-top: 74px;
+  padding-top: 45px;
+  padding-bottom: 60px;
 }

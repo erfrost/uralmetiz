@@ -147,3 +147,9 @@ table {
   font-weight: 700;
   src: url(../../public/fonts/VKSansDisplay-Bold.ttf);
 }
+
+.carousel-root {
+  outline: none;
+  display: flex;
+  justify-content: center;
+}

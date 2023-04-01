@@ -1,8 +1,8 @@
 import { Build } from "@mui/icons-material";
-import { Card, Paper } from "@mui/material";
-import styles from "./Categories.module.scss";
+import { Paper } from "@mui/material";
+import styles from "./CategoriesCatalog.module.scss";
 
-const Categories = () => {
+const CategoriesCatalog = () => {
   return (
     <div className={styles.categories}>
       <h2 className={styles.title}>Категории товаров</h2>
@@ -108,4 +108,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default CategoriesCatalog;

@@ -4,8 +4,9 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.scss";
 import Header from "@/components/common/Header/Header";
 import Search from "@/components/common/Search/Search";
-import news from "../../public/news_mock.png";
 import Categories from "@/components/common/Categories/Categories";
+import NewsCarousel from "@/components/common/Carousel/NewsCarousel";
+import Footer from "@/components/common/Footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,9 +32,11 @@ export default function Home() {
             justifyContent: "center",
           }}
         >
-          <Image src={news} width="100%" style={{ marginleft: "auto" }} />
+          <NewsCarousel />
         </div>
         <Categories />
+        <div style={{ marginTop: 60 }} />
+        <Footer />
       </main>
     </>
   );

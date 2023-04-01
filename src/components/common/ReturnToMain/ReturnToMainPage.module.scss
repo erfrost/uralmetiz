@@ -1,0 +1,28 @@
+.container {
+  margin-top: 45px;
+  font-family: "VK Sans Display";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  /* identical to box height */
+
+  color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+}
+
+.prevText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  user-select: none;
+  gap: 6px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+  transition: 0.2s;
+  &:hover {
+    color: rgba(0, 0, 0, 0.9);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+  }
+}
