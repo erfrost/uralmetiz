@@ -18,6 +18,7 @@ import Buttons from "./buttons";
 import EditData from "./editData";
 import AddData from "./addData";
 import api from "@/pages/api/apiRequest";
+import ApplicationInfo from "./applicationInfo";
 
 const TableComponent = ({
   title,
@@ -31,8 +32,11 @@ const TableComponent = ({
 }) => {
   const [page, setPage] = useState(0);
   const [data, setData] = useState(null);
+  const [categories, setCategories] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
   const [isAdd, setIsAdd] = useState(false);
+  const [isInfo, setIsInfo] = useState(false);
+  const [infoItem, setInfoItem] = useState(null);
   const [dataId, setDataId] = useState(null);
   const [textField, setTextField] = useState("");
 
@@ -88,6 +92,14 @@ const TableComponent = ({
   const handleOpenAdd = () => {
     setIsAdd(true);
   };
+  const handleOpenInfo = (id) => {
+    setIsInfo(true);
+    const indexData = data.findIndex((item) => item.id === id);
+    setInfoItem(data[indexData]);
+  };
+  const handleCloseInfo = () => {
+    setIsInfo(false);
+  };
 
   const handleDelete = (setData, id) => {
     if (title === "ЗАЯВКИ") {
@@ -110,6 +122,8 @@ const TableComponent = ({
       const { data: responseData } = await api("admin/orders");
       setData(responseData);
     }
+    const categories = await api("categories");
+    setCategories(categories);
   }
 
   useEffect(() => {
@@ -159,12 +173,11 @@ const TableComponent = ({
   //     ]
   //   }
   // ]
-
+  console.log(data);
   return (
     <>
       {data && (
         <>
-          {console.log(data)}
           {isEdit ? (
             <EditData
               id={dataId}
@@ -173,6 +186,14 @@ const TableComponent = ({
             />
           ) : isAdd ? (
             <AddData data={data} handleCloseAdd={handleCloseAdd} />
+          ) : isInfo ? (
+            <ApplicationInfo
+              data={infoItem}
+              categories={categories}
+              handleFinishOrder={handleFinishOrder}
+              handleDeleteOrder={handleDeleteOrder}
+              setIsInfo={setIsInfo}
+            />
           ) : (
             <>
               {title === "НОВОСТИ" ? (
@@ -254,16 +275,16 @@ const TableComponent = ({
                             align="center"
                             className={`${styles.fontMain} ${styles.tableCell} ${styles.cell1} ${styles.fontWeight}`}
                           >
-                            {n.cell_1}
+                            {title === "ЗАЯВКИ" ? n.total_price : n.cell_1}
                           </TableCell>
 
                           <TableCell
                             align="left"
                             className={`${styles.fontMain} ${styles.tableCell} ${styles.cell2}`}
                           >
-                            {n.cell_2.length <= 25
-                              ? n.cell_2
-                              : n.cell_2.slice(0, 24) + "..."}
+                            {title === "ЗАЯВКИ"
+                              ? n.items.map((item) => item.title)
+                              : null}
                           </TableCell>
                           <TableCell
                             align="center"
@@ -273,24 +294,26 @@ const TableComponent = ({
                                 : `${styles.fontMain} ${styles.tableCell} ${styles.cell3}`
                             }
                           >
-                            {title === "ЗАЯВКИ" ? (
-                              n.cell_3
-                            ) : (
-                              <Buttons
-                                id={title === "ЗАЯВКИ" ? n.id : n.cell_1}
-                                handleDelete={() =>
-                                  handleDelete(
-                                    setData,
-                                    title === "ЗАЯВКИ" ? n.id : n.cell_1
-                                  )
-                                }
-                                handleOpenChange={() =>
-                                  handleOpenChange(
-                                    title === "ЗАЯВКИ" ? n.id : n.cell_1
-                                  )
-                                }
-                              />
-                            )}
+                            <Buttons
+                              id={title === "ЗАЯВКИ" ? n.id : n.cell_1}
+                              handleDelete={() =>
+                                handleDelete(
+                                  setData,
+                                  title === "ЗАЯВКИ" ? n.id : n.cell_1
+                                )
+                              }
+                              handleOpenChange={() =>
+                                handleOpenChange(
+                                  title === "ЗАЯВКИ" ? n.id : n.cell_1
+                                )
+                              }
+                              isApplications={title === "ЗАЯВКИ" ? true : false}
+                              handleOpenInfo={() =>
+                                handleOpenInfo(
+                                  title === "ЗАЯВКИ" ? n.id : n.cell_1
+                                )
+                              }
+                            />
                           </TableCell>
                         </TableRow>
                       ))}

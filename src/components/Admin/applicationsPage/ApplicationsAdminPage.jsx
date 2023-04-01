@@ -92,9 +92,9 @@ const ApplicationsAdminPage = () => {
   return (
     <TableComponent
       title="ЗАЯВКИ"
-      header_1="ИМЯ"
-      header_2="ТЕЛЕФОН"
-      header_3="НАЗВАНИЕ"
+      header_1="СТОИМОСТЬ"
+      header_2="ТОВАРЫ"
+      header_3="ДЕЙСТВИЯ"
       items={applications}
       totalPages={totalPages}
       countItems={countItems}

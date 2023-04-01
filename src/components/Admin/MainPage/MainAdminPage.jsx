@@ -120,11 +120,11 @@ const MainAdminPage = () => {
             {page === "Главная" ? (
               renderBox2
             ) : page === "Новости" ? (
-              <NewsAdminPage />
+              <NewsAdminPage page={page} />
             ) : page === "Товары" ? (
-              <ProductsAdminPage />
+              <ProductsAdminPage page={page} />
             ) : page === "Заявки" ? (
-              <ApplicationsAdminPage />
+              <ApplicationsAdminPage page={page} />
             ) : null}
           </Box>
         </Paper>

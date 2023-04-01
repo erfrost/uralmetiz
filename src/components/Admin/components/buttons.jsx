@@ -10,10 +10,16 @@ import { Box } from "@mui/system";
 import styles from "../newsPage/newsAdminPage.module.css";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
+  return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function Buttons({ id, handleOpenChange, handleDelete }) {
+export default function Buttons({
+  id,
+  handleOpenChange,
+  handleDelete,
+  handleOpenInfo,
+  isApplications,
+}) {
   const [open, setOpen] = React.useState(false);
 
   const handleOpenModal = (id) => {
@@ -25,57 +31,71 @@ export default function Buttons({ id, handleOpenChange, handleDelete }) {
 
   return (
     <>
-      <Button
-        className={`${styles.tableBtn} ${styles.fontMain}`}
-        variant="text"
-        onClick={() => handleOpenChange(id)}
-      >
-        Изменить
-      </Button>
-      <Button
-        className={`${styles.tableBtn} ${styles.fontMain}`}
-        variant="text"
-        onClick={() => handleOpenModal(id)}
-      >
-        Удалить
-      </Button>
-      <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleCloseModal}
-        aria-describedby="alert-dialog-slide-description"
-      >
-        <Box className={styles.modalContent}>
-          <DialogTitle className={`${styles.fontMain} ${styles.modalTitle}`}>
-            Вы уверены что хотите удалить новость?
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText
-              id="alert-dialog-slide-description"
-              className={styles.DialogContentText}
-            >
-              Это действие нельзя отменить
-            </DialogContentText>
-          </DialogContent>
-        </Box>
-        <DialogActions>
+      {!isApplications ? (
+        <>
           <Button
-            id="1"
-            className={`${styles.modalBtn} ${styles.fontMain} ${styles.btnCancel}`}
-            onClick={handleCloseModal}
+            className={`${styles.tableBtn} ${styles.fontMain}`}
+            variant="text"
+            onClick={() => handleOpenChange(id)}
           >
-            Отменить
+            Изменить
           </Button>
           <Button
-            id="2"
-            className={`${styles.btnDelete} ${styles.modalBtn} ${styles.fontMain}`}
-            onClick={() => handleDelete(id)}
+            className={`${styles.tableBtn} ${styles.fontMain}`}
+            variant="text"
+            onClick={() => handleOpenModal(id)}
           >
             Удалить
           </Button>
-        </DialogActions>
-      </Dialog>
+          <Dialog
+            open={open}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleCloseModal}
+            aria-describedby="alert-dialog-slide-description"
+          >
+            <Box className={styles.modalContent}>
+              <DialogTitle
+                className={`${styles.fontMain} ${styles.modalTitle}`}
+              >
+                Вы уверены что хотите удалить новость?
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText
+                  id="alert-dialog-slide-description"
+                  className={styles.DialogContentText}
+                >
+                  Это действие нельзя отменить
+                </DialogContentText>
+              </DialogContent>
+            </Box>
+            <DialogActions>
+              <Button
+                id="1"
+                className={`${styles.modalBtn} ${styles.fontMain} ${styles.btnCancel}`}
+                onClick={handleCloseModal}
+              >
+                Отменить
+              </Button>
+              <Button
+                id="2"
+                className={`${styles.btnDelete} ${styles.modalBtn} ${styles.fontMain}`}
+                onClick={() => handleDelete(id)}
+              >
+                Удалить
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </>
+      ) : (
+        <Button
+          className={`${styles.tableBtn} ${styles.fontMain}`}
+          variant="text"
+          onClick={() => handleOpenInfo(id)}
+        >
+          Подробнее
+        </Button>
+      )}
     </>
   );
 }
