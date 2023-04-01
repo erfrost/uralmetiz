@@ -10,13 +10,14 @@ import {
   TextField,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import styles from "../newsPage/newsAdminPage.module.css";
 import mainStyles from "../MainPage/MainAdminPage.module.css";
 import Buttons from "./buttons";
 import EditData from "./editData";
 import AddData from "./addData";
+import api from "@/pages/api/apiRequest";
 
 const TableComponent = ({
   title,
@@ -29,7 +30,7 @@ const TableComponent = ({
   ROWS_PER_PAGE,
 }) => {
   const [page, setPage] = useState(0);
-  const [data, setData] = useState(items);
+  const [data, setData] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
   const [isAdd, setIsAdd] = useState(false);
   const [dataId, setDataId] = useState(null);
@@ -99,156 +100,219 @@ const TableComponent = ({
     const text = e.target.value;
     setTextField(text);
   };
+  // тут то сделай, чтоб инфа вылезала о заявке
   const handleClickRow = (rowId) => {};
+
+  async function get() {
+    //  при монтировании компонента data === null, нам и нужен именно этот отрезок времени, чтобы не допустить повторных запросов к бекенду и не слать ему 100 ненужных и однотипных запросов, вместо одного
+    if (!data) {
+      // GET запрос
+      const { data: responseData } = await api("admin/orders");
+      setData(responseData);
+    }
+  }
+
+  useEffect(() => {
+    get();
+  }, []);
+
+  const handleDeleteOrder = async (orderId) => {
+    const { data: responseData, message: errorMessage } = await api(
+      `admin/orders/${orderId}`,
+      "DELETE"
+    );
+    if (responseData) {
+      // Успешно удалили заказ. Далее здесь твой алгоритм для удаления заказа из стейта
+    } else {
+      if (errorMessage) {
+        console.log(errorMessage); // Ошибка. Нужно обрабатывать.
+      }
+    }
+  };
+
+  const handleFinishOrder = async (orderId) => {
+    const { data: responseData, message: errorMessage } = await api(
+      `admin/orders/${orderId}`,
+      "PATCH"
+    );
+    if (responseData) {
+      // Успешно ЗАВЕРШИЛИ заказ. Далее пиши мне, разберемся, куда их заносить.
+    } else {
+      if (errorMessage) {
+        console.log(errorMessage); // Ошибка. Нужно обрабатывать.
+      }
+    }
+  };
+
+  // пример того, что придет в стейт data
+
+  // [
+  //   {
+  //     "id": 1,
+  //     "name": "Иван",
+  //     "phone": "89999999999",
+  //     "comment": "Комментарий",
+  //     "total_price": 1000,
+  //     "created_at": 1610000000,
+  //     "items": [
+  //       "string"
+  //     ]
+  //   }
+  // ]
 
   return (
     <>
-      {isEdit ? (
-        <EditData
-          id={dataId}
-          data={data}
-          handleCloseChange={handleCloseChange}
-        />
-      ) : isAdd ? (
-        <AddData data={data} handleCloseAdd={handleCloseAdd} />
-      ) : (
+      {data && (
         <>
-          {title === "НОВОСТИ" ? (
-            <Box className={styles.newsHeaderBox}>
-              <Box className={mainStyles.title1}>{title}</Box>
-              <Button
-                className={styles.newsHeaderBtn}
-                variant="text"
-                onClick={handleOpenAdd}
-              >
-                Добавить новость
-              </Button>
-            </Box>
+          {console.log(data)}
+          {isEdit ? (
+            <EditData
+              id={dataId}
+              data={data}
+              handleCloseChange={handleCloseChange}
+            />
+          ) : isAdd ? (
+            <AddData data={data} handleCloseAdd={handleCloseAdd} />
           ) : (
-            <Box className={mainStyles.title1}>{title}</Box>
-          )}
+            <>
+              {title === "НОВОСТИ" ? (
+                <Box className={styles.newsHeaderBox}>
+                  <Box className={mainStyles.title1}>{title}</Box>
+                  <Button
+                    className={styles.newsHeaderBtn}
+                    variant="text"
+                    onClick={handleOpenAdd}
+                  >
+                    Добавить новость
+                  </Button>
+                </Box>
+              ) : (
+                <Box className={mainStyles.title1}>{title}</Box>
+              )}
 
-          {title === "ТОВАРЫ" ? (
-            <Box className={styles.textFieldBox}>
-              <TextField
-                id="filled-basic"
-                label="Поиск по товарам"
-                variant="filled"
-                className={styles.textField}
-                value={textField}
-                onChange={handleSearch}
-              />
-              <Button
-                className={styles.productsHeaderBtn}
-                variant="text"
-                onClick={handleOpenAdd}
-              >
-                Добавить товар
-              </Button>
-            </Box>
-          ) : null}
+              {title === "ТОВАРЫ" ? (
+                <Box className={styles.textFieldBox}>
+                  <TextField
+                    id="filled-basic"
+                    label="Поиск по товарам"
+                    variant="filled"
+                    className={styles.textField}
+                    value={textField}
+                    onChange={handleSearch}
+                  />
+                  <Button
+                    className={styles.productsHeaderBtn}
+                    variant="text"
+                    onClick={handleOpenAdd}
+                  >
+                    Добавить товар
+                  </Button>
+                </Box>
+              ) : null}
 
-          <Box
-            className={
-              title === "ТОВАРЫ"
-                ? `${styles.boxTable} ${styles.productsBoxTable}`
-                : styles.boxTable
-            }
-          >
-            <TableContainer className={styles.table}>
-              <Table aria-label="simple table" className={styles.tableMain}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell
-                      align="center"
-                      className={`${styles.fontMain} ${styles.tableBorder} ${styles.fontWeight} ${styles.tableHeader}`}
-                    >
-                      {header_1}
-                    </TableCell>
-                    <TableCell
-                      align="left"
-                      className={`${styles.fontMain} ${styles.tableBorder} ${styles.fontWeight} ${styles.tableHeader}`}
-                    >
-                      {header_2}
-                    </TableCell>
-                    <TableCell
-                      align="center"
-                      className={`${styles.fontMain} ${styles.tableBorder} ${styles.fontWeight} ${styles.tableHeader}`}
-                    >
-                      {header_3}
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {data.slice(startIndex, endIndex).map((n) => (
-                    <TableRow
-                      className={`${styles.tableRow} ${styles.tableBorder} ${styles.rowHover}`}
-                      key={title === "ЗАЯВКИ" ? n.id : n.cell_1}
-                      onClick={() =>
-                        handleClickRow(title === "ЗАЯВКИ" ? n.id : n.cell_1)
-                      }
-                    >
-                      <TableCell
-                        align="center"
-                        className={`${styles.fontMain} ${styles.tableCell} ${styles.cell1} ${styles.fontWeight}`}
-                      >
-                        {n.cell_1}
-                      </TableCell>
-
-                      <TableCell
-                        align="left"
-                        className={`${styles.fontMain} ${styles.tableCell} ${styles.cell2}`}
-                      >
-                        {n.cell_2.length <= 25
-                          ? n.cell_2
-                          : n.cell_2.slice(0, 24) + "..."}
-                      </TableCell>
-                      <TableCell
-                        align="center"
-                        className={
-                          title === "ЗАЯВКИ"
-                            ? `${styles.fontMain} ${styles.tableCell} ${styles.cell3} ${styles.nameApplication}`
-                            : `${styles.fontMain} ${styles.tableCell} ${styles.cell3}`
-                        }
-                      >
-                        {title === "ЗАЯВКИ" ? (
-                          n.cell_3
-                        ) : (
-                          <Buttons
-                            id={title === "ЗАЯВКИ" ? n.id : n.cell_1}
-                            handleDelete={() =>
-                              handleDelete(
-                                setData,
-                                title === "ЗАЯВКИ" ? n.id : n.cell_1
-                              )
-                            }
-                            handleOpenChange={() =>
-                              handleOpenChange(
-                                title === "ЗАЯВКИ" ? n.id : n.cell_1
-                              )
-                            }
-                          />
-                        )}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-              <TablePagination
-                rowsPerPageOptions={[]}
-                component="div"
-                count={data.length}
-                rowsPerPage={ROWS_PER_PAGE}
-                page={page}
-                onPageChange={handleChangePage}
+              <Box
                 className={
                   title === "ТОВАРЫ"
-                    ? `${styles.tablePagination} ${styles.productsPagination}`
-                    : styles.tablePagination
+                    ? `${styles.boxTable} ${styles.productsBoxTable}`
+                    : styles.boxTable
                 }
-              />
-            </TableContainer>
-          </Box>
+              >
+                <TableContainer className={styles.table}>
+                  <Table aria-label="simple table" className={styles.tableMain}>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell
+                          align="center"
+                          className={`${styles.fontMain} ${styles.tableBorder} ${styles.fontWeight} ${styles.tableHeader}`}
+                        >
+                          {header_1}
+                        </TableCell>
+                        <TableCell
+                          align="left"
+                          className={`${styles.fontMain} ${styles.tableBorder} ${styles.fontWeight} ${styles.tableHeader}`}
+                        >
+                          {header_2}
+                        </TableCell>
+                        <TableCell
+                          align="center"
+                          className={`${styles.fontMain} ${styles.tableBorder} ${styles.fontWeight} ${styles.tableHeader}`}
+                        >
+                          {header_3}
+                        </TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {data.slice(startIndex, endIndex).map((n) => (
+                        <TableRow
+                          className={`${styles.tableRow} ${styles.tableBorder} ${styles.rowHover}`}
+                          key={title === "ЗАЯВКИ" ? n.id : n.cell_1}
+                          onClick={() =>
+                            handleClickRow(title === "ЗАЯВКИ" ? n.id : n.cell_1)
+                          }
+                        >
+                          <TableCell
+                            align="center"
+                            className={`${styles.fontMain} ${styles.tableCell} ${styles.cell1} ${styles.fontWeight}`}
+                          >
+                            {n.cell_1}
+                          </TableCell>
+
+                          <TableCell
+                            align="left"
+                            className={`${styles.fontMain} ${styles.tableCell} ${styles.cell2}`}
+                          >
+                            {n.cell_2.length <= 25
+                              ? n.cell_2
+                              : n.cell_2.slice(0, 24) + "..."}
+                          </TableCell>
+                          <TableCell
+                            align="center"
+                            className={
+                              title === "ЗАЯВКИ"
+                                ? `${styles.fontMain} ${styles.tableCell} ${styles.cell3} ${styles.nameApplication}`
+                                : `${styles.fontMain} ${styles.tableCell} ${styles.cell3}`
+                            }
+                          >
+                            {title === "ЗАЯВКИ" ? (
+                              n.cell_3
+                            ) : (
+                              <Buttons
+                                id={title === "ЗАЯВКИ" ? n.id : n.cell_1}
+                                handleDelete={() =>
+                                  handleDelete(
+                                    setData,
+                                    title === "ЗАЯВКИ" ? n.id : n.cell_1
+                                  )
+                                }
+                                handleOpenChange={() =>
+                                  handleOpenChange(
+                                    title === "ЗАЯВКИ" ? n.id : n.cell_1
+                                  )
+                                }
+                              />
+                            )}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                  <TablePagination
+                    rowsPerPageOptions={[]}
+                    component="div"
+                    count={data.length}
+                    rowsPerPage={ROWS_PER_PAGE}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    className={
+                      title === "ТОВАРЫ"
+                        ? `${styles.tablePagination} ${styles.productsPagination}`
+                        : styles.tablePagination
+                    }
+                  />
+                </TableContainer>
+              </Box>
+            </>
+          )}
         </>
       )}
     </>
