@@ -55,13 +55,13 @@ border-radius: 10px !important;
 
 @media screen and (max-width:1141px) {
     .textFieldWidth {
-        width: 107%;
+        width: 109%;
     }
     .fileLabel {
-        width: 107%;
+        width: 108%;
     }
     .btnFile {
-        width: 100%;
+        width: 101%;
         height: 56px;
         color: rgba(0, 0, 0, 0.6) !important;
         border-radius: 10px !important;
@@ -69,7 +69,7 @@ border-radius: 10px !important;
         background-color: rgb(249, 249, 249) !important;
     }
     .btnSubmit {
-        width: 107%;
+        width: 109%;
         height: 56px;
         align-self: flex-start;
         color: white !important;
@@ -98,16 +98,16 @@ border-radius: 10px !important;
         margin-left: -5px;
     }
     .textFieldWidth {
-        width: 110%;
+        width: 112%;
     }
     .fileLabel {
-        width: 110%;
+        width: 112%;
     }
     .btnFile {
         width: 100%;
     }
     .btnSubmit {
-        width: 110%;
+        width: 112%;
     }
 }
 @media screen and (max-width:450px) {

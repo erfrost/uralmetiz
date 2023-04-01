@@ -13,6 +13,7 @@ import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import styles from "../newsPage/newsAdminPage.module.css";
+import mainStyles from "../MainPage/MainAdminPage.module.css";
 import Buttons from "./buttons";
 import EditData from "./editData";
 import AddData from "./addData";
@@ -35,13 +36,15 @@ const TableComponent = ({
   const [textField, setTextField] = useState("");
 
   //рендер количества строк
-  const news1 = useMediaQuery({ maxWidth: 1112 });
-  const news2 = useMediaQuery({ maxWidth: 1000 });
-  const news3 = useMediaQuery({ maxWidth: 681 });
-  const products1 = useMediaQuery({ maxWidth: 1112 });
-  const products2 = useMediaQuery({ maxWidth: 1000 });
-  const products3 = useMediaQuery({ maxWidth: 830 });
-  const products4 = useMediaQuery({ maxWidth: 681 });
+  const news1 = useMediaQuery({ maxWidth: 681 });
+  const news2 = useMediaQuery({ maxWidth: 450 });
+  const news3 = useMediaQuery({ maxWidth: 403 });
+  const products1 = useMediaQuery({ maxWidth: 830 });
+  const products2 = useMediaQuery({ maxWidth: 480 });
+  const products3 = useMediaQuery({ maxWidth: 450 });
+  const products4 = useMediaQuery({ maxWidth: 391 });
+  const applications1 = useMediaQuery({ maxWidth: 830 });
+
   if (news1 && title === "НОВОСТИ") {
     ROWS_PER_PAGE = ROWS_PER_PAGE - 1;
   }
@@ -52,10 +55,10 @@ const TableComponent = ({
     ROWS_PER_PAGE = ROWS_PER_PAGE - 1;
   }
   if (products1 && title === "ТОВАРЫ") {
-    ROWS_PER_PAGE = ROWS_PER_PAGE - 1;
+    ROWS_PER_PAGE = ROWS_PER_PAGE + 1;
   }
   if (products2 && title === "ТОВАРЫ") {
-    ROWS_PER_PAGE = ROWS_PER_PAGE + 1;
+    ROWS_PER_PAGE = ROWS_PER_PAGE - 1;
   }
   if (products3 && title === "ТОВАРЫ") {
     ROWS_PER_PAGE = ROWS_PER_PAGE + 1;
@@ -112,7 +115,7 @@ const TableComponent = ({
         <>
           {title === "НОВОСТИ" ? (
             <Box className={styles.newsHeaderBox}>
-              <Box className={styles.title1}>{title}</Box>
+              <Box className={mainStyles.title1}>{title}</Box>
               <Button
                 className={styles.newsHeaderBtn}
                 variant="text"
@@ -122,7 +125,7 @@ const TableComponent = ({
               </Button>
             </Box>
           ) : (
-            <Box className={styles.title1}>{title}</Box>
+            <Box className={mainStyles.title1}>{title}</Box>
           )}
 
           {title === "ТОВАРЫ" ? (

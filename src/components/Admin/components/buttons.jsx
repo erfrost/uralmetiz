@@ -26,14 +26,14 @@ export default function Buttons({ id, handleOpenChange, handleDelete }) {
   return (
     <>
       <Button
-        className={`${styles.tableBtn} ${styles.fontMain} ${styles.btn1}`}
+        className={`${styles.tableBtn} ${styles.fontMain}`}
         variant="text"
         onClick={() => handleOpenChange(id)}
       >
         Изменить
       </Button>
       <Button
-        className={`${styles.tableBtn} ${styles.fontMain} ${styles.btn2}`}
+        className={`${styles.tableBtn} ${styles.fontMain}`}
         variant="text"
         onClick={() => handleOpenModal(id)}
       >

@@ -13,12 +13,12 @@ import {
   Paper,
   Tooltip,
   Typography,
-  useScrollTrigger,
 } from "@mui/material";
 import { useMediaQuery } from "react-responsive";
 import styles from "./MainAdminPage.module.css";
 import NewsAdminPage from "../newsPage/newsAdminPage";
 import ProductsAdminPage from "../productsPage/productsAdminPage";
+import ApplicationsAdminPage from "../applicationsPage/ApplicationsAdminPage";
 
 const settings = ["Профиль", "Выход"];
 const navigation = ["Главная", "Новости", "Товары", "Заявки"];
@@ -86,103 +86,6 @@ const MainAdminPage = () => {
 
   return (
     <Box className={styles.body}>
-      <AppBar className={styles.appBar}>
-        <Grid className={styles.appBarLeft}>
-          <img
-            className={styles.mobileMenu}
-            alt="mobileMenu"
-            onClick={handleMobileMenuIsHover}
-          ></img>
-
-          {!isMobileDevice && (
-            <>
-              <img className={styles.logo} alt={"logo"} />
-              <Grid className={styles.headerTitle}>Панель Администратора</Grid>
-            </>
-          )}
-        </Grid>
-
-        {isMobileMenu ? (
-          <Box className={styles.dropdown}>
-            <ButtonGroup
-              orientation="vertical"
-              aria-label="vertical outlined button group"
-              variant="text"
-              className={
-                mobileMenuIsHover
-                  ? `${styles.buttonGroup} ${styles.borderLine} ${styles.dropdownContent} ${styles.show}`
-                  : `${styles.buttonGroup} ${styles.borderLine} ${styles.dropdownContent}`
-              }
-            >
-              {navigation.map((nav) => {
-                return (
-                  <Button
-                    className={styles.button}
-                    key={nav}
-                    onClick={() => handleSwitchPage(nav)}
-                  >
-                    {nav}
-                  </Button>
-                );
-              })}
-            </ButtonGroup>
-          </Box>
-        ) : null}
-
-        <Grid className={styles.appBarRight}>
-          {!isMobileDevice && !isTabletDevice ? (
-            <Tooltip title="Open menu" className={styles.openMenu}>
-              <Grid onClick={handleOpenUserMenu}>
-                <Grid className={styles.clickedMenu}>
-                  <Avatar
-                    className={styles.avatar}
-                    alt="Avatar"
-                    src="/static/images/avatar/1.jpg"
-                  />
-
-                  <Box>Admin</Box>
-                  <img className={styles.arrow} alt="arrowError" />
-                </Grid>
-              </Grid>
-            </Tooltip>
-          ) : (
-            <Avatar
-              className={styles.avatar}
-              alt="Avatar"
-              src="/static/images/avatar/1.jpg"
-            />
-          )}
-
-          {!isMobileDevice && (
-            <Menu
-              className={styles.menu}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem
-                  className={styles.menuItem}
-                  key={setting}
-                  onClick={handleCloseUserMenu}
-                >
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          )}
-        </Grid>
-      </AppBar>
       <Box className={styles.main}>
         {!isMobileDevice && (
           <Paper elevation={0} className={styles.navigationMain}>
@@ -221,7 +124,7 @@ const MainAdminPage = () => {
             ) : page === "Товары" ? (
               <ProductsAdminPage />
             ) : page === "Заявки" ? (
-              <Applications />
+              <ApplicationsAdminPage />
             ) : null}
           </Box>
         </Paper>

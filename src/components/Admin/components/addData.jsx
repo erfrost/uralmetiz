@@ -2,6 +2,8 @@ import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import styles from "./editData.module.css";
+import newsStyles from "../newsPage/newsAdminPage.module.css";
+import mainStyles from "../MainPage/MainAdminPage.module.css";
 
 const currentDate = new Date();
 const day = String(currentDate.getDate()).padStart(2, "0");
@@ -36,7 +38,7 @@ const AddData = ({ data, handleCloseAdd }) => {
 
   return (
     <>
-      <Box className={styles.title1}>
+      <Box className={mainStyles.title1}>
         <span className={styles.clickableWord} onClick={handleCloseAdd}>
           НОВОСТИ
         </span>{" "}
@@ -44,7 +46,7 @@ const AddData = ({ data, handleCloseAdd }) => {
       </Box>
       <Box className={styles.inputBox}>
         <TextField
-          className={`${styles.textFieldWidth} ${styles.textField}`}
+          className={`${styles.textFieldWidth} ${newsStyles.textField}`}
           id="outlined-basic"
           label="Заголовок"
           variant="filled"
@@ -53,7 +55,7 @@ const AddData = ({ data, handleCloseAdd }) => {
           onChange={(e) => handleChangeText(1, e)}
         />
         <TextField
-          className={`${styles.textFieldWidth} ${styles.textField}`}
+          className={`${styles.textFieldWidth} ${newsStyles.textField}`}
           id="outlined-multiline-static"
           label="Контент"
           variant="filled"

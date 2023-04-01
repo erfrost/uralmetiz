@@ -516,19 +516,21 @@
     .box2Text4 {
       margin-top: 0 !important;
     }
-    .title3 {
-      font-size: 10px;
-    }
     .box2Photo {
       left: 50%;
     }
     .infoPanelTitle {
-      margin-left: 45px;
+      margin-left: 40px;
+    }
+  }
+  @media screen and (max-width:484px) {
+    .body {
+      min-height: calc(100vh - 89px);
     }
   }
   @media screen and (max-width: 450px) {
     .body {
-      height: 100vh;
+      height: 80vh;
       overflow-x: hidden;
       overflow-y: hidden;
       display: flex;
@@ -648,7 +650,6 @@
 
     .title3 {
       margin-left: -15px;
-      font-size: 10px;
       margin-top: 15px;
     }
 
