@@ -25,7 +25,7 @@ const ApplicationInfo = ({
   handleDeleteOrder,
   setIsInfo,
 }) => {
-  console.log(data);
+  console.log(data.id);
   const [openComplete, setOpenComplete] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
   const isMobileDevice = useMediaQuery({ maxWidth: 615 });

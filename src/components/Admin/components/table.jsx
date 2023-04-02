@@ -136,7 +136,9 @@ const TableComponent = ({
       "DELETE"
     );
     if (responseData) {
-      // Успешно удалили заказ. Далее здесь твой алгоритм для удаления заказа из стейта
+      const applicationIndex = data.findIndex((app) => app.id === orderId);
+      const newData = data.filter((app, index) => index !== applicationIndex);
+      setData(newData);
     } else {
       if (errorMessage) {
         console.log(errorMessage); // Ошибка. Нужно обрабатывать.
