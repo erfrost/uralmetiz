@@ -162,6 +162,8 @@
   margin-top: 40px;
   background-color: white;
   border-radius: 15px !important;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .infoPanelTitle {
@@ -307,9 +309,6 @@
   }
 }
 @media screen and (max-width: 1140px) {
-  .infoPanel {
-    width: 59%;
-  }
   .box2Main {
     width: 93%;
   }

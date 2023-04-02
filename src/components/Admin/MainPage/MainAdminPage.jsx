@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import {
   AppBar,
   Avatar,
@@ -15,6 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useMediaQuery } from "react-responsive";
+
 import styles from "./MainAdminPage.module.css";
 import NewsAdminPage from "../newsPage/newsAdminPage";
 import ProductsAdminPage from "../productsPage/productsAdminPage";
@@ -120,11 +121,11 @@ const MainAdminPage = () => {
             {page === "Главная" ? (
               renderBox2
             ) : page === "Новости" ? (
-              <NewsAdminPage page={page} />
+              <NewsAdminPage />
             ) : page === "Товары" ? (
-              <ProductsAdminPage page={page} />
+              <ProductsAdminPage />
             ) : page === "Заявки" ? (
-              <ApplicationsAdminPage page={page} />
+              <ApplicationsAdminPage />
             ) : null}
           </Box>
         </Paper>

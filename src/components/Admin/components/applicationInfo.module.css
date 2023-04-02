@@ -1,3 +1,10 @@
+.grid {
+    max-height: 500px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 .body {
     color: rgb(0,0,0,0.6);
     position: relative;
@@ -7,7 +14,7 @@
     flex-direction: column;
     justify-content: left;
     gap: 17px;
-    margin-left: 40px;
+    margin-left: 1px;
     margin-top: 35px;
 }
 .mainInfo {
@@ -19,13 +26,16 @@
 .titleText {
     color: rgba(0, 0, 0, 0.6);
 }
+.phone {
+    color: rgba(0, 0, 0, 0.6);;
+}
 .flexColumn {
     display: flex;
     flex-direction: column !important;
     gap: 17px;
 }
 .comment {
-    width: 71%; 
+    width: 100%; 
     display: block; 
     word-wrap: break-word; 
 }
@@ -37,7 +47,7 @@
     gap: 20px;
     height: 1px;
     position:absolute;
-    right: 28%;
+    right: 0;
     top: 30px;
 }
 .totalPrice {
@@ -71,7 +81,7 @@
     background-color: rgba(78, 54, 226, 1);
 }
 .productMain {
-    width: 71%;
+    width: 100%;
     height: 200px;
     background-color: rgba(78, 54, 226, 0.87);
     border-radius: 10px;
@@ -85,7 +95,7 @@
     margin-left: 15px;
 }
 .image {
-    width: 259px;
+    min-width: 259px;
     height: 178px;
     border-radius: 10px;
     margin-top: 10px;
@@ -118,7 +128,7 @@
     justify-content: left;
     flex-wrap: wrap;
     gap: 5px;
-    width: 400px;
+    width: 99%;
 }
 .param {
     background-color: white;
@@ -176,12 +186,6 @@
         font-size: 13px;
     }
 }
-@media screen and (max-width:1414px) {
-    .param {
-        width: 110px;
-        font-size: 11px;
-    }
-}
 @media screen and (max-width:1355px) {
     .titleText {
         font-size: 20px;
@@ -195,30 +199,19 @@
     .comment {
         font-size: 17px;
     }
-    .paramsBox {
-        width: 300px;
-    }
-    .param {
-        width: 92px;
-        font-size: 10px;
-    }
-    .btnComplete {
-        width: 90px;
-        font-size: 14px;
-    }
-    .btnDelete {
-        font-size: 14px;
-    }
 }
 @media screen and (max-width:1273px) {
     .header {
-        right: 7%;
+        right: 0;
     }
     .comment {
-        width: calc(100% - 50px);
+        width: 100%;
     }
     .productMain {
-        width: calc(100% - 50px);
+        width: 100%
+    }
+    .param {
+        width: 104px;
     }
 }
 @media screen and (max-width:1141px) {
@@ -229,105 +222,30 @@
         right: 0;
     }
     .comment {
-        width: calc(100% - 3px);
+        width: 100%;
     }
     .productMain {
-        width: calc(100% - 3px);
+        width: 100%;
+        height: calc(100% + 10px)
+    }
+    .paramsBox {
+        margin-bottom: 15px;
     }
     .param {
-        width: 90px;
+        width: 130px;
+        font-size: 15px;
+    }
+    .image {
+        display: none;
+    }
+}
+@media screen and (max-width:1000px) {
+    .param {
+        width: 140px;
+        font-size: 15px;
     }
 }
 @media screen and (max-width:615px) {
-    .main {
-        width: 110%;
-        margin-left: -5%;
-    }
-    .category {
-        font-size: 12px;
-    }
-    .itemName {
-        font-size: 14px;
-    }
-    .price {
-        font-size: 17px;
-    }
-    .paramsBox {
-        width: 250px;
-        height: 95px;
-    }
-    .param {
-        width: 115px;
-        height: 25px;
-        font-size: 12px;
-    }
-}
-@media screen and (max-width:565px) {
-    .titleText {
-        font-size: 18px;
-    }
-    .name {
-        font-size: 16px;
-    }
-    .phone {
-        font-size: 16px;
-    }
-    .comment {
-        font-size: 16px;
-    }
-    .totalPrice {
-        font-size: 25px;
-    }
-    .btnComplete {
-        width: 85px;
-        font-size: 12px;
-    }
-    .btnDelete {
-        width: 75px;
-        font-size: 12px;
-    }
-}
-@media screen and (max-width:525px) {
-    .texts {
-        gap: 8px;
-    }
-    .paramsBox {
-        width: 250px;
-        height: 95px;
-    }
-    .param {
-        width: 100px;
-        height: 25px;
-        font-size: 11px;
-    }
-    .itemName {
-        width: 90%; 
-        display: block; 
-        word-wrap: break-word; 
-    }
-    .image {
-        width: 40%;
-    }
-    .buttons {
-        gap: 3px;
-    }
-    .btnComplete {
-        width: 72px;
-        font-size: 11px;
-    }
-    .btnDelete {
-        width: 72px;
-        font-size: 11px;
-    }
-}
-@media screen and (max-width:475px) {
-    .param {
-        width: 92px;
-        font-size: 10px;
-    }
-
-}
-@media screen and (max-width:450px) {
     .titleText {
         font-size: 22px;
     }
@@ -339,10 +257,10 @@
     }
     .comment {
         font-size: 18px;
-        width: 100%;
+        width: 95%;
     }
     .main {
-        width: 122%;
+        width: 114%;
         margin-left: -7%;
         margin-top: 0;
     }
@@ -363,6 +281,7 @@
     }
     .productMain {
         width: 100%;
+        min-height: 200px;
     }
     .texts {
         margin-top: 20px;
@@ -383,12 +302,22 @@
     }
     .paramsBox {
         width: 96%;
-        height: 60px;
     }
     .param {
-        width: 158px;
+        width: 130px;
         height: 25px;
         font-size: 14px;
     }
 }
-
+@media screen and (max-width:500px) {
+    .param {
+        width: 114px;
+    }
+}
+@media screen and (max-width:450px) {
+    .main {
+        width: 118%;
+        margin-left: -6%;
+        margin-top: 0;
+    }
+}

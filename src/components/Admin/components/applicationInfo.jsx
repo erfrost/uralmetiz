@@ -8,6 +8,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Grid,
 } from "@mui/material";
 import Slide from "@mui/material/Slide";
 import Link from "next/link";
@@ -27,7 +28,7 @@ const ApplicationInfo = ({
   console.log(data);
   const [openComplete, setOpenComplete] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
-  const isMobileDevice = useMediaQuery({ maxWidth: 450 });
+  const isMobileDevice = useMediaQuery({ maxWidth: 615 });
   const handleOpenModalComplete = () => {
     setOpenComplete(true);
   };
@@ -327,6 +328,15 @@ const ApplicationInfo = ({
                           <Box className={styles.param}>
                             {param.title + ": " + param.data}
                           </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
                         </>
                       ))}
                     </Box>
@@ -334,6 +344,148 @@ const ApplicationInfo = ({
                 </Box>
               </Box>
             ))}
+            {data.items.map((product) => (
+              <Box className={styles.productMain}>
+                <Box className={styles.productContent}>
+                  <img
+                    alt="image"
+                    src={product.photo_url}
+                    className={styles.image}
+                  />
+                  <Box className={styles.texts}>
+                    <Box className={styles.categories}>
+                      <Box className={styles.category}>
+                        {`${
+                          categories.data[
+                            categories.data.findIndex(
+                              (category) => category.id === product.category_id
+                            )
+                          ].title
+                        } /`}
+                      </Box>
+                      <Box className={styles.category}>
+                        {
+                          categories.data[
+                            categories.data.findIndex(
+                              (category) => category.id === product.category_id
+                            )
+                          ].subcategories[
+                            categories.data[
+                              categories.data.findIndex(
+                                (category) =>
+                                  category.id === product.category_id
+                              )
+                            ].subcategories.findIndex(
+                              (sub) => sub.id === product.subcategory_id
+                            )
+                          ].title
+                        }
+                      </Box>
+                    </Box>
+                    <Box className={styles.itemName}>{product.title}</Box>
+                    <Box className={styles.price}>
+                      {priceTransform(product.price)}
+                    </Box>
+                    <Box className={styles.paramsBox}>
+                      {product.specifications.map((param) => (
+                        <>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                        </>
+                      ))}
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+            ))}
+            {data.items.map((product) => (
+              <Box className={styles.productMain}>
+                <Box className={styles.productContent}>
+                  <img
+                    alt="image"
+                    src={product.photo_url}
+                    className={styles.image}
+                  />
+                  <Box className={styles.texts}>
+                    <Box className={styles.categories}>
+                      <Box className={styles.category}>
+                        {`${
+                          categories.data[
+                            categories.data.findIndex(
+                              (category) => category.id === product.category_id
+                            )
+                          ].title
+                        } /`}
+                      </Box>
+                      <Box className={styles.category}>
+                        {
+                          categories.data[
+                            categories.data.findIndex(
+                              (category) => category.id === product.category_id
+                            )
+                          ].subcategories[
+                            categories.data[
+                              categories.data.findIndex(
+                                (category) =>
+                                  category.id === product.category_id
+                              )
+                            ].subcategories.findIndex(
+                              (sub) => sub.id === product.subcategory_id
+                            )
+                          ].title
+                        }
+                      </Box>
+                    </Box>
+                    <Box className={styles.itemName}>{product.title}</Box>
+                    <Box className={styles.price}>
+                      {priceTransform(product.price)}
+                    </Box>
+                    <Box className={styles.paramsBox}>
+                      {product.specifications.map((param) => (
+                        <>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                        </>
+                      ))}
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+            ))}
+            <br />
+            <br />
           </Box>
         </>
       ) : (
@@ -518,62 +670,6 @@ const ApplicationInfo = ({
                           <Box className={styles.param}>
                             {param.title + ": " + param.data}
                           </Box>
-                        </>
-                      ))}
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
-            ))}
-            {data.items.map((product) => (
-              <Box className={styles.productMain}>
-                <Box className={styles.productContent}>
-                  <Box className={styles.texts}>
-                    <Box className={styles.categories}>
-                      <Box className={styles.category}>
-                        {`${
-                          categories.data[
-                            categories.data.findIndex(
-                              (category) => category.id === product.category_id
-                            )
-                          ].title
-                        } /`}
-                      </Box>
-                      <Box className={styles.category}>
-                        {
-                          categories.data[
-                            categories.data.findIndex(
-                              (category) => category.id === product.category_id
-                            )
-                          ].subcategories[
-                            categories.data[
-                              categories.data.findIndex(
-                                (category) =>
-                                  category.id === product.category_id
-                              )
-                            ].subcategories.findIndex(
-                              (sub) => sub.id === product.subcategory_id
-                            )
-                          ].title
-                        }
-                      </Box>
-                    </Box>
-                    <Box className={styles.itemName}>{product.title}</Box>
-                    <Box className={styles.price}>
-                      {priceTransform(product.price)}
-                    </Box>
-                    <Box className={styles.paramsBox}>
-                      {product.specifications.map((param) => (
-                        <>
-                          <Box className={styles.param}>
-                            {param.title + ": " + param.data}
-                          </Box>
-                          <Box className={styles.param}>
-                            {param.title + ": " + param.data}
-                          </Box>
-                          <Box className={styles.param}>
-                            {param.title + ": " + param.data}
-                          </Box>
                           <Box className={styles.param}>
                             {param.title + ": " + param.data}
                           </Box>
@@ -720,6 +816,73 @@ const ApplicationInfo = ({
                 </Box>
               </Box>
             ))}
+            {data.items.map((product) => (
+              <Box className={styles.productMain}>
+                <Box className={styles.productContent}>
+                  <Box className={styles.texts}>
+                    <Box className={styles.categories}>
+                      <Box className={styles.category}>
+                        {`${
+                          categories.data[
+                            categories.data.findIndex(
+                              (category) => category.id === product.category_id
+                            )
+                          ].title
+                        } /`}
+                      </Box>
+                      <Box className={styles.category}>
+                        {
+                          categories.data[
+                            categories.data.findIndex(
+                              (category) => category.id === product.category_id
+                            )
+                          ].subcategories[
+                            categories.data[
+                              categories.data.findIndex(
+                                (category) =>
+                                  category.id === product.category_id
+                              )
+                            ].subcategories.findIndex(
+                              (sub) => sub.id === product.subcategory_id
+                            )
+                          ].title
+                        }
+                      </Box>
+                    </Box>
+                    <Box className={styles.itemName}>{product.title}</Box>
+                    <Box className={styles.price}>
+                      {priceTransform(product.price)}
+                    </Box>
+                    <Box className={styles.paramsBox}>
+                      {product.specifications.map((param) => (
+                        <>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                          <Box className={styles.param}>
+                            {param.title + ": " + param.data}
+                          </Box>
+                        </>
+                      ))}
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+            ))}
+            <br />
+            <br />
           </Box>
         </Box>
       )}
