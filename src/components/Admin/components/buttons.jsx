@@ -91,7 +91,10 @@ export default function Buttons({
         <Button
           className={`${styles.tableBtn} ${styles.fontMain}`}
           variant="text"
-          onClick={() => handleOpenInfo(id)}
+          onClick={() => {
+            handleOpenInfo(id);
+            handleCloseModal;
+          }}
         >
           Подробнее
         </Button>

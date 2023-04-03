@@ -70,7 +70,6 @@
     margin-top: -23px;
 }
 .table {
-    height: 420px;
     display: flex !important;
     flex-direction: column;
 }
@@ -151,9 +150,6 @@ font-size: 16px !important;
     }
 }
 @media screen and (max-width:1141px) {
-    .table {
-        height: 470px;
-    }
     .cell2 {
         width: 120px;
         font-size: 15px !important;
@@ -210,7 +206,7 @@ font-size: 16px !important;
 @media screen and (max-width:450px)  {
     .textFieldBox {
         width: 100%;
-        margin-left: -25px;
+        
     }
     .textField {
         min-width: 175px !important;
@@ -223,7 +219,7 @@ font-size: 16px !important;
         font-size: 16px !important;
     }
     .productsHeaderBtn {
-        min-width: 165px !important;
+        min-width: 120px !important;
     }
     .boxTable {
         width: 100%;
@@ -237,7 +233,7 @@ font-size: 16px !important;
     }
     .tablePagination {
         position: absolute;
-        top: 375px;
+        top: 425px;
     }
 }
 .cell3 {

@@ -83,6 +83,7 @@ const TableComponent = ({
     setIsEdit(false);
   };
   const handleOpenChange = (id) => {
+    console.log(id);
     setDataId(id);
     setIsEdit(true);
   };
@@ -101,48 +102,99 @@ const TableComponent = ({
     setIsInfo(false);
   };
 
-  const handleDelete = (setData, id) => {
-    if (title === "ЗАЯВКИ") {
-      setData((prevState) => prevState.filter((n) => n.id !== id));
-    } else {
-      setData((prevState) => prevState.filter((n) => n.cell_1 !== id));
-    }
-  };
   const handleSearch = (e) => {
     const text = e.target.value;
     setTextField(text);
   };
-  // тут то сделай, чтоб инфа вылезала о заявке
-  const handleClickRow = (rowId) => {};
 
-  async function get() {
+  async function getCategories() {
+    const categories = await api("categories");
+    setCategories(categories);
+  }
+  async function getNews() {
+    //  при монтировании компонента data === null, нам и нужен именно этот отрезок времени, чтобы не допустить повторных запросов к бекенду и не слать ему 100 ненужных и однотипных запросов, вместо одного
+    if (!data) {
+      // GET запрос
+      const { data: responseData } = await api("news");
+      setData(responseData);
+    }
+  }
+  async function getItems() {
+    //  при монтировании компонента data === null, нам и нужен именно этот отрезок времени, чтобы не допустить повторных запросов к бекенду и не слать ему 100 ненужных и однотипных запросов, вместо одного
+    if (!data) {
+      // GET запрос
+      const { data: responseData } = await api("items");
+      setData(responseData);
+    }
+  }
+  async function getOrders() {
     //  при монтировании компонента data === null, нам и нужен именно этот отрезок времени, чтобы не допустить повторных запросов к бекенду и не слать ему 100 ненужных и однотипных запросов, вместо одного
     if (!data) {
       // GET запрос
       const { data: responseData } = await api("admin/orders");
       setData(responseData);
     }
-    const categories = await api("categories");
-    setCategories(categories);
+    getCategories();
   }
 
   useEffect(() => {
-    get();
+    switch (title) {
+      case "НОВОСТИ":
+        getNews();
+        break;
+      case "ТОВАРЫ":
+        getItems();
+        break;
+      case "ЗАЯВКИ":
+        getOrders();
+        break;
+      default:
+        break;
+    }
   }, []);
 
-  const handleDeleteOrder = async (orderId) => {
+  const handleDelete = async (id) => {
+    let anchor = "";
+    switch (title) {
+      case "НОВОСТИ":
+        anchor = "news";
+        break;
+      case "ТОВАРЫ":
+        anchor = "items";
+        break;
+      case "ЗАЯВКИ":
+        anchor = "orders";
+        break;
+      default:
+        break;
+    }
     const { data: responseData, message: errorMessage } = await api(
-      `admin/orders/${orderId}`,
+      `admin/${anchor}/${id}`,
       "DELETE"
     );
     if (responseData) {
-      const applicationIndex = data.findIndex((app) => app.id === orderId);
-      const newData = data.filter((app, index) => index !== applicationIndex);
+      const itemIndex = data.findIndex((item) => item.id === id);
+      const newData = data.filter((item, index) => index !== itemIndex);
       setData(newData);
     } else {
       if (errorMessage) {
         console.log(errorMessage); // Ошибка. Нужно обрабатывать.
       }
+    }
+  };
+  const handleSubmit = async (id, editData) => {
+    console.log(editData);
+    if (title === "НОВОСТИ") {
+      await api(`admin/news/${id}`, "PATCH", editData);
+    } else {
+      await api(`admin/items/${id}`, "PATCH", editData);
+    }
+  };
+  const handleAdd = async () => {
+    if (title === "НОВОСТИ") {
+      await api(`admin/news`, "POST");
+    } else {
+      await api(`admin/items`, "POST");
     }
   };
 
@@ -159,7 +211,6 @@ const TableComponent = ({
       }
     }
   };
-
   // пример того, что придет в стейт data
 
   // [
@@ -181,11 +232,16 @@ const TableComponent = ({
       {data && (
         <>
           {isEdit ? (
-            <EditData
-              id={dataId}
-              data={data}
-              handleCloseChange={handleCloseChange}
-            />
+            (getCategories(),
+            (
+              <EditData
+                id={dataId}
+                handleSubmit={handleSubmit}
+                handleCloseChange={handleCloseChange}
+                page={title}
+                categories={categories}
+              />
+            ))
           ) : isAdd ? (
             <AddData data={data} handleCloseAdd={handleCloseAdd} />
           ) : isInfo ? (
@@ -193,7 +249,7 @@ const TableComponent = ({
               data={infoItem}
               categories={categories}
               handleFinishOrder={handleFinishOrder}
-              handleDeleteOrder={handleDeleteOrder}
+              handleDeleteOrder={handleDelete}
               setIsInfo={setIsInfo}
             />
           ) : (
@@ -269,15 +325,12 @@ const TableComponent = ({
                         <TableRow
                           className={`${styles.tableRow} ${styles.tableBorder} ${styles.rowHover}`}
                           key={title === "ЗАЯВКИ" ? n.id : n.cell_1}
-                          onClick={() =>
-                            handleClickRow(title === "ЗАЯВКИ" ? n.id : n.cell_1)
-                          }
                         >
                           <TableCell
                             align="center"
                             className={`${styles.fontMain} ${styles.tableCell} ${styles.cell1} ${styles.fontWeight}`}
                           >
-                            {title === "ЗАЯВКИ" ? n.total_price : n.cell_1}
+                            {title === "ЗАЯВКИ" ? n.total_price : n.id}
                           </TableCell>
 
                           <TableCell
@@ -286,7 +339,7 @@ const TableComponent = ({
                           >
                             {title === "ЗАЯВКИ"
                               ? n.items.map((item) => item.title)
-                              : null}
+                              : n.title}
                           </TableCell>
                           <TableCell
                             align="center"
@@ -297,18 +350,9 @@ const TableComponent = ({
                             }
                           >
                             <Buttons
-                              id={title === "ЗАЯВКИ" ? n.id : n.cell_1}
-                              handleDelete={() =>
-                                handleDelete(
-                                  setData,
-                                  title === "ЗАЯВКИ" ? n.id : n.cell_1
-                                )
-                              }
-                              handleOpenChange={() =>
-                                handleOpenChange(
-                                  title === "ЗАЯВКИ" ? n.id : n.cell_1
-                                )
-                              }
+                              id={n.id}
+                              handleDelete={handleDelete}
+                              handleOpenChange={() => handleOpenChange(n.id)}
                               isApplications={title === "ЗАЯВКИ" ? true : false}
                               handleOpenInfo={() =>
                                 handleOpenInfo(

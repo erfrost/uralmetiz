@@ -14,9 +14,24 @@ border-radius: 10px !important;
 .input-content {
 width: 50%;
 border-radius: 10px !important;
+background-color: black !important;
 }
 .textFieldWidth {
     width: 635px;
+}
+.selectBox {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.formControl {
+    width: 50%;
+}
+.select div {
+    font-family: 'VK Sans Display' !important;
+}
+#menu div ul li {
+    height: 100px;
 }
 .fileLabel {
     width: 635px;
@@ -55,13 +70,13 @@ border-radius: 10px !important;
 
 @media screen and (max-width:1141px) {
     .textFieldWidth {
-        width: 109%;
+        width: 106%;
     }
     .fileLabel {
-        width: 108%;
+        width: 106%;
     }
     .btnFile {
-        width: 101%;
+        width: 100%;
         height: 56px;
         color: rgba(0, 0, 0, 0.6) !important;
         border-radius: 10px !important;
@@ -69,7 +84,7 @@ border-radius: 10px !important;
         background-color: rgb(249, 249, 249) !important;
     }
     .btnSubmit {
-        width: 109%;
+        width: 106%;
         height: 56px;
         align-self: flex-start;
         color: white !important;
@@ -112,7 +127,8 @@ border-radius: 10px !important;
 }
 @media screen and (max-width:450px) {
     .inputBox {
-        margin-left: -40px;
+        margin-left: -15px;
+        max-width: 87%;
     }
     .textFieldWidth {
         width: 135%;
