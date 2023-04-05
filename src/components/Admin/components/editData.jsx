@@ -1,13 +1,16 @@
 import {
   Button,
   FormControl,
+  IconButton,
   InputLabel,
   MenuItem,
   Select,
   TextField,
 } from "@mui/material";
+import ClearIcon from "@mui/icons-material/Clear";
+import CheckIcon from "@mui/icons-material/Check";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import styles from "./editData.module.css";
 import newsStyles from "../newsPage/newsAdminPage.module.css";
 import mainStyles from "../MainPage/MainAdminPage.module.css";
@@ -27,6 +30,11 @@ const EditData = ({
 }) => {
   const [photoUrl, setPhotoUrl] = useState("");
   const [categoryId, setCategoryId] = useState(null);
+  const [inputsSpecification, setInputsSpecification] = useState(false);
+  const [specificationItem, setSpecificationItem] = useState({
+    title: "",
+    data: "",
+  });
   const [editNewsData, setEditNewsData] = useState({
     title: "",
     content: "",
@@ -37,31 +45,65 @@ const EditData = ({
     title: "",
     description: "",
     photo_url: "",
-    category: null,
-    sub_category: null,
+    category_id: null,
+    subcategory_id: null,
+    price: null,
+    specifications: [],
   });
-  console.log(categories ? categories.data : null);
+
   const handleChangeText = (id, e) => {
     if (page === "НОВОСТИ") {
-      id === 1
-        ? setEditNewsData((prevState) => ({
+      switch (id) {
+        case 1:
+          setEditNewsData((prevState) => ({
             ...prevState,
             title: e.target.value,
-          }))
-        : setEditNewsData((prevState) => ({
+          }));
+          break;
+        case 1:
+          setEditNewsData((prevState) => ({
             ...prevState,
             content: e.target.value,
           }));
+          break;
+        default:
+          break;
+      }
     } else {
-      id === 1
-        ? setEditItemsData((prevState) => ({
+      switch (id) {
+        case 1:
+          setEditItemsData((prevState) => ({
             ...prevState,
             title: e.target.value,
-          }))
-        : setEditItemsData((prevState) => ({
+          }));
+          break;
+        case 2:
+          setEditItemsData((prevState) => ({
             ...prevState,
             description: e.target.value,
           }));
+          break;
+        case 3:
+          setEditItemsData((prevState) => ({
+            ...prevState,
+            price: e.target.value,
+          }));
+          break;
+        case 4:
+          setSpecificationItem((prevState) => ({
+            ...prevState,
+            title: e.target.value,
+          }));
+          break;
+        case 5:
+          setSpecificationItem((prevState) => ({
+            ...prevState,
+            data: e.target.value,
+          }));
+          break;
+        default:
+          break;
+      }
     }
   };
   const handleFileSelect = (e) => {
@@ -85,7 +127,7 @@ const EditData = ({
       category: categories
         ? categories.data[
             categories.data.findIndex((cat) => cat.id === e.target.value)
-          ].title
+          ].id
         : null,
     }));
   };
@@ -102,11 +144,26 @@ const EditData = ({
               ].subcategories.findIndex(
                 (subcat) => subcat.id === e.target.value
               )
-            ].title
+            ].id
           : null,
     }));
   };
-  console.log(editItemsData);
+
+  const handleOpenInputsSpecification = () => {
+    setInputsSpecification(true);
+  };
+  const handleCloseInputsSpecification = () => {
+    setInputsSpecification(false);
+  };
+  const handleConfirmSpecification = () => {
+    setEditItemsData((prevState) => ({
+      ...prevState,
+      specifications: [...prevState.specifications, specificationItem],
+    }));
+    setSpecificationItem({ title: "", data: "" });
+    handleCloseInputsSpecification();
+  };
+
   return (
     <>
       <Box className={mainStyles.title1}>
@@ -119,7 +176,7 @@ const EditData = ({
         <TextField
           className={`${styles.textFieldWidth} ${newsStyles.textField}`}
           id="outlined-basic"
-          label="Заголовок"
+          label="Название"
           variant="filled"
           inputProps={{ style: { color: "rgba(0, 0, 0, 0.6)" } }}
           value={page === "НОВОСТИ" ? editNewsData.title : editItemsData.title}
@@ -129,7 +186,7 @@ const EditData = ({
         <TextField
           className={`${styles.textFieldWidth} ${newsStyles.textField}`}
           id="outlined-multiline-static"
-          label="Контент"
+          label="Описание"
           variant="filled"
           multiline
           rows={4}
@@ -172,7 +229,11 @@ const EditData = ({
                 label="Подкатегория"
                 onChange={handleChangeSubCategory}
                 disabled={categoryId ? false : true}
-                className={styles.select}
+                className={
+                  categoryId
+                    ? styles.select
+                    : `${styles.select} ${styles.disabledSelect}`
+                }
               >
                 {categories && categoryId ? (
                   categories.data[
@@ -185,7 +246,62 @@ const EditData = ({
                 )}
               </Select>
             </FormControl>
+            <TextField
+              className={`${styles.textFieldWidth} ${newsStyles.textField} ${styles.price}`}
+              id="outlined-basic"
+              label="Цена"
+              variant="filled"
+              inputProps={{ style: { color: "rgba(0, 0, 0, 0.6)" } }}
+              value={editItemsData.price}
+              onChange={(e) => handleChangeText(3, e)}
+            />
           </Box>
+        ) : null}
+        {page === "ТОВАРЫ" ? (
+          <>
+            <Box
+              className={`${styles.specificationBox} ${styles.textFieldWidth}`}
+            >
+              <Button
+                className={`${styles.btnAddSpecification} ${styles.btnFile} ${styles.btnHover}`}
+                component="span"
+                onClick={handleOpenInputsSpecification}
+              >
+                ДОБАВИТЬ ХАРАКТЕРИСТИКУ
+              </Button>
+            </Box>
+            {inputsSpecification ? (
+              <Box
+                className={`${styles.textFieldWidth} ${styles.specificationInputBox}`}
+              >
+                <TextField
+                  className={`${styles.textFieldWidth} ${newsStyles.textField} ${styles.specificationInput}`}
+                  id="outlined-basic"
+                  label="Характеристика"
+                  variant="filled"
+                  inputProps={{ style: { color: "rgba(0, 0, 0, 0.6)" } }}
+                  value={specificationItem.title}
+                  onChange={(e) => handleChangeText(4, e)}
+                />
+                <TextField
+                  className={`${styles.textFieldWidth} ${newsStyles.textField} ${styles.specificationInput}`}
+                  id="outlined-basic"
+                  label="Значение"
+                  variant="filled"
+                  inputProps={{ style: { color: "rgba(0, 0, 0, 0.6)" } }}
+                  value={specificationItem.data}
+                  onChange={(e) => handleChangeText(5, e)}
+                />
+                <IconButton
+                  className={`${styles.btnDelete} ${styles.btnFile} ${styles.btnHover}`}
+                  component="span"
+                  onClick={handleConfirmSpecification}
+                >
+                  <CheckIcon className={styles.clearIcon} />
+                </IconButton>
+              </Box>
+            ) : null}
+          </>
         ) : null}
         <label htmlFor="file-upload" className={styles.fileLabel}>
           <input

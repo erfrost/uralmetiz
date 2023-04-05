@@ -161,7 +161,7 @@ font-size: 16px !important;
 }
 @media screen and (max-width:830px) {
     .newsHeaderBox {
-        justify-content: end;
+        justify-content: flex-end;
     }
     .newsHeaderBtn {
         width: 200px !important;

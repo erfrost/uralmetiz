@@ -39,6 +39,7 @@ const TableComponent = ({
   const [infoItem, setInfoItem] = useState(null);
   const [dataId, setDataId] = useState(null);
   const [textField, setTextField] = useState("");
+  const [loading, setLoading] = useState(true);
 
   //рендер количества строк
   const news1 = useMediaQuery({ maxWidth: 681 });
@@ -83,7 +84,6 @@ const TableComponent = ({
     setIsEdit(false);
   };
   const handleOpenChange = (id) => {
-    console.log(id);
     setDataId(id);
     setIsEdit(true);
   };
@@ -110,6 +110,7 @@ const TableComponent = ({
   async function getCategories() {
     const categories = await api("categories");
     setCategories(categories);
+    setLoading(false);
   }
   async function getNews() {
     //  при монтировании компонента data === null, нам и нужен именно этот отрезок времени, чтобы не допустить повторных запросов к бекенду и не слать ему 100 ненужных и однотипных запросов, вместо одного
@@ -151,6 +152,7 @@ const TableComponent = ({
       default:
         break;
     }
+    getCategories();
   }, []);
 
   const handleDelete = async (id) => {
@@ -183,19 +185,18 @@ const TableComponent = ({
     }
   };
   const handleSubmit = async (id, editData) => {
-    console.log(editData);
-    if (title === "НОВОСТИ") {
-      await api(`admin/news/${id}`, "PATCH", editData);
-    } else {
-      await api(`admin/items/${id}`, "PATCH", editData);
-    }
+    //if (title === "НОВОСТИ") {
+    //  await api(`admin/news/${id}`, "PATCH", editData);
+    //} else {
+    //  await api(`admin/items/${id}`, "PATCH", editData);
+    //}
   };
-  const handleAdd = async () => {
-    if (title === "НОВОСТИ") {
-      await api(`admin/news`, "POST");
-    } else {
-      await api(`admin/items`, "POST");
-    }
+  const handleAdd = async (addData) => {
+    //if (title === "НОВОСТИ") {
+    //  await api(`admin/news`, "POST");
+    //} else {
+    //  await api(`admin/items`, "POST");
+    //}
   };
 
   const handleFinishOrder = async (orderId) => {
@@ -232,18 +233,20 @@ const TableComponent = ({
       {data && (
         <>
           {isEdit ? (
-            (getCategories(),
-            (
-              <EditData
-                id={dataId}
-                handleSubmit={handleSubmit}
-                handleCloseChange={handleCloseChange}
-                page={title}
-                categories={categories}
-              />
-            ))
+            <EditData
+              id={dataId}
+              handleSubmit={handleSubmit}
+              handleCloseChange={handleCloseChange}
+              page={title}
+              categories={categories}
+            />
           ) : isAdd ? (
-            <AddData data={data} handleCloseAdd={handleCloseAdd} />
+            <AddData
+              handleAdd={handleAdd}
+              handleCloseAdd={handleCloseAdd}
+              page={title}
+              categories={categories}
+            />
           ) : isInfo ? (
             <ApplicationInfo
               data={infoItem}

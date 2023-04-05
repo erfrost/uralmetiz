@@ -25,7 +25,6 @@ const ApplicationInfo = ({
   handleDeleteOrder,
   setIsInfo,
 }) => {
-  console.log(data.id);
   const [openComplete, setOpenComplete] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
   const isMobileDevice = useMediaQuery({ maxWidth: 615 });
@@ -44,7 +43,6 @@ const ApplicationInfo = ({
 
   const priceTransform = (price) => {
     price = price.toString();
-    console.log(`${price[0]} ${price[1]}${price[2]}${price[3]} ₽`);
     switch (price.length) {
       case 4:
         return `${price[0]} ${price[1]}${price[2]}${price[3]} ₽`;
