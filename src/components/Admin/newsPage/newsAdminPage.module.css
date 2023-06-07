@@ -4,6 +4,7 @@
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: -21px;
+    min-width: 100%;
 }
 .newsHeaderBtn {
     width: 275px;
@@ -17,6 +18,22 @@
 }
 .newsHeaderBtn:hover {
     background-color: rgba(78, 54, 226, 0.87) !important;
+}
+.catFontSize1 {
+    font-size: 12px;
+    text-align: start !important;
+}
+.catFontSize2 {
+    font-size: 12px;
+    text-align: start !important;
+}
+.catFontSize3 {
+    font-size: 12px;
+    text-align: center !important;
+}
+.catCell {
+    text-align: start !important;
+    font-size: 12px !important;
 }
 .productsHeaderBtn {
     width: 250px;
@@ -36,6 +53,7 @@
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    min-width: 100%;
 }
 .textField {
     width: 100%;
@@ -65,9 +83,12 @@
     color: rgba(0, 0, 0, 0.6) !important;
     font-family: 'VK Sans Display' !important;
 }
-
+.boxTable {
+    min-width: 100%;
+}
 .productsBoxTable {
     margin-top: -23px;
+    min-width: 100%;
 }
 .table {
     display: flex !important;
@@ -133,7 +154,8 @@ color: rgba(0, 0, 0, 0.6) !important;
 .cell1 {
 width: 25px;
 margin-left: 10px;
-font-size: 16px !important;
+font-size: 16px;
+font-weight: 500 !important;
 }
 .cell2 {
     width: 400px;
@@ -201,18 +223,16 @@ font-size: 16px !important;
 @media screen and (max-width:483px) {
     .tableBtn {
         margin: 1px;
+        font-size: 12px !important;
     }
 }
 @media screen and (max-width:450px)  {
     .textFieldBox {
         width: 100%;
-        
-    }
-    .textField {
-        min-width: 175px !important;
+        gap: 10px;
     }
     .newsHeaderBox {
-        margin-left: 23px;
+        justify-content: center;
     }
     .newsHeaderBtn {
         width: 300px !important;
@@ -221,19 +241,24 @@ font-size: 16px !important;
     .productsHeaderBtn {
         min-width: 120px !important;
     }
+    .productsBoxTable {
+        max-width: 100%;
+    }
     .boxTable {
         width: 100%;
     }
     .table {
-        width: 96% !important;
-        height: 510px;
-        gap: 40px;
-        position: absolute;
-        left: 9px;
+        width: 100% !important;
+       
     }
     .tablePagination {
-        position: absolute;
-        top: 425px;
+        position: relative;
+    }
+    .textField label {
+        font-size: 14px !important;
+    }
+    .textField div div {
+        font-size: 13px !important;
     }
 }
 .cell3 {
@@ -268,7 +293,7 @@ font-size: 16px !important;
    color: rgba(0, 0, 0, 0.6)
 }
 .fontWeight {
-    font-weight: 700 !important;
+    font-weight: 700;
 }
 .fontMain {
     font-family: 'VK Sans Display' !important;

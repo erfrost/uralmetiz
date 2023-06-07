@@ -7,7 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { Box } from "@mui/system";
-import styles from "../newsPage/newsAdminPage.module.css";
+import styles from "../Admin/newsPage/newsAdminPage.module.css";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -19,6 +19,7 @@ export default function Buttons({
   handleDelete,
   handleOpenInfo,
   isApplications,
+  page,
 }) {
   const [open, setOpen] = React.useState(false);
 
@@ -36,7 +37,14 @@ export default function Buttons({
           <Button
             className={`${styles.tableBtn} ${styles.fontMain}`}
             variant="text"
-            onClick={() => handleOpenChange(id)}
+            onClick={
+              page === "НОВОСТИ"
+                ? () => (window.location.href = `/admin/news/edit?id=${id}`)
+                : page === "КАТЕГОРИИ"
+                ? () =>
+                    (window.location.href = `/admin/categories/edit?id=${id}`)
+                : () => (window.location.href = `/admin/items/edit?id=${id}`)
+            }
           >
             Изменить
           </Button>
@@ -80,7 +88,9 @@ export default function Buttons({
               <Button
                 id="2"
                 className={`${styles.btnDelete} ${styles.modalBtn} ${styles.fontMain}`}
-                onClick={() => handleDelete(id)}
+                onClick={() => {
+                  handleDelete(id), handleCloseModal;
+                }}
               >
                 Удалить
               </Button>
@@ -91,10 +101,7 @@ export default function Buttons({
         <Button
           className={`${styles.tableBtn} ${styles.fontMain}`}
           variant="text"
-          onClick={() => {
-            handleOpenInfo(id);
-            handleCloseModal;
-          }}
+          onClick={() => handleOpenInfo(id)}
         >
           Подробнее
         </Button>

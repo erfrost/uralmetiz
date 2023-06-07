@@ -28,8 +28,6 @@ const MainAdminPage = () => {
   const [page, setPage] = useState("Главная");
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [mobileMenuIsHover, setMobileMenuIsHover] = useState(false);
-  const isMobileDevice = useMediaQuery({ maxWidth: 450 });
-  const isTabletDevice = useMediaQuery({ maxWidth: 830, minWidth: 450 });
   const isMobileMenu = useMediaQuery({ maxWidth: 1000 });
 
   const handleMobileMenuIsHover = () => {

@@ -1,11 +1,17 @@
-import useSWR from "swr";
+const serverApi = async (endpoint, method = "GET", params) => {
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  const data = await fetch(`${process.env.BACKEND_URL}/${endpoint}`, {
+    next: {
+      revalidate: 3600,
+    },
+    method: method,
+    headers: headers,
+    body: JSON.stringify(params),
+  });
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-const api = (url, method = "GET", payload) => {
-  fetch(`${process.env.BACKEND_URI}${url}`, { method });
+  return await data.json();
 };
 
-export function useSignIn(payload) {
-  fetch(`${process.env.BACKEND_URI}`);
-}
+export default serverApi;
